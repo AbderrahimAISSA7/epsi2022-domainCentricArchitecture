@@ -1,0 +1,11 @@
+# Download the Sakila PostgreSQL example database
+FROM debian:buster-slim AS sakila
+RUN apt-get update && apt-get install -y --no-install-recommends wget ca-certificates unzip
+RUN wget https://github.com/jOOQ/sakila/archive/refs/heads/main.zip && unzip main.zip 'sakila-main/postgres-sakila-db/*'
+# Copy the schema and data .sql files from the Sakila database into
+# /docker-entrypoint-initdb.d so they are executed when the
+# container initializes
+FROM postgres:14
+ENV POSTGRES_DB sakila
+COPY --from=sakila /sakila-main/postgres-sakila-db/postgres-sakila-schema.sql /docker-entrypoint-initdb.d/01-postgres-sakila-schema.sql
+COPY --from=sakila /sakila-main/postgres-sakila-db/postgres-sakila-insert-data.sql /docker-entrypoint-initdb.d/02-postgres-sakila-insert-data.sql
