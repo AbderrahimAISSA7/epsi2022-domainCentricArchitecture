@@ -1,4 +1,4 @@
-package fr.epsi.actor.repository;
+package fr.epsi.actor.repository.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.epsi.actor.model.Actor;
+import fr.epsi.actor.repository.ActorRepository;
 
 public class DatabaseActorRepository implements ActorRepository {
 
+    // URL du serveur PostgreSQL
     private static final String url = "jdbc:postgresql://epsi.simplearetenir.com:5432/sakila";
 
     @Override

@@ -14,13 +14,17 @@ import fr.epsi.actor.service.MyActorService;
 public class App {
     public static void main(String[] args) throws Exception {
 
+        // On instancie manuellement un Service
+        // Pour le moment, le service a la connaissance du Repository qu'il doit utiliser...
         ActorService service = new MyActorService();
-        List<Actor> actorList = service.listerTousLesActeurs();
 
+        // Lister tous les acteurs depuis le service
+        List<Actor> actorList = service.listerTousLesActeurs();
         for (Actor actor : actorList) {
             System.out.println(actor);
         }
 
+        // Rechercher un acteur en fonction de son id depuis le service
         int id = 13;
         Optional<Actor> actor = service.getById(id);
         if (actor.isPresent()) {

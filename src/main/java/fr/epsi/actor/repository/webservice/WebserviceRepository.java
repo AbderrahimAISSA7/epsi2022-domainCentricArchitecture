@@ -1,4 +1,4 @@
-package fr.epsi.actor.repository;
+package fr.epsi.actor.repository.webservice;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,10 +11,11 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.epsi.actor.model.Actor;
-import fr.epsi.actor.repository.webservice.JsonActorDTO;
+import fr.epsi.actor.repository.ActorRepository;
 
 public class WebserviceRepository implements ActorRepository {
 
+    // URL du Webservice JSON
     private static final String url = "https://63481ec00484786c6e926453.mockapi.io/api/v1/actors/";
 
     @Override
