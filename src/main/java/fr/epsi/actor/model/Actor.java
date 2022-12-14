@@ -1,19 +1,21 @@
 package fr.epsi.actor.model;
 
-
+/**
+ * Cet objet représente une Entity du Domain, il est primordial
+ * qu'il ne dépende d'aucun détail d'implémentation tel que des
+ * annotations de mapping JSON ou base de données (ORM).
+ * En d'autres termes, sa structure ne doit pas être dictée par la manière dont
+ * ses données seront stockées ou manipulées par les autres couches, que ce soit
+ * Controller ou Repository
+ * 
+ * Il s'agit de repésenter la donnée métier sous sa forme la plus "pure".
+ */
 public class Actor {
-    
-    public static final Actor NOBODY = new Actor("nobody", "nobody", 0){ 
-        @Override
-        public String nomAffichable() {
-            return "inconnu";
-        }
-    };
-    
+
     private String nom;
     private String prenom;
     private Integer id;
-    
+
     public Integer getId() {
         return id;
     }
@@ -23,7 +25,7 @@ public class Actor {
     }
 
     public String nomAffichable() {
-        return prenom + " " + nom + " ["+id+"]";
+        return prenom + " " + nom + " [" + id + "]";
     }
 
     public String getPrenom() {
@@ -50,7 +52,7 @@ public class Actor {
 
     @Override
     public String toString() {
-        
+
         return nomAffichable();
     }
 }
