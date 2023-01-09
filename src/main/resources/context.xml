@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Configuration du bean WebserviceRepository -->
+    <bean id="webserviceActorRepository"
+        class="fr.epsi.actor.repository.webservice.WebserviceRepository">
+    </bean>
+
+    <!-- Configuration du bean DatabaseActorRepository -->
+    <bean id="databaseActorRepository"
+        class="fr.epsi.actor.repository.database.DatabaseActorRepository">
+    </bean>
+
+    <!-- Configuration du bean ActorService -->
+    <bean id="actorService"
+        class="fr.epsi.actor.service.MyActorService">
+        <!-- Le Service nécessite un Repository, on le lui injecte via son constructeur -->
+        <!-- l'implémentation peut être modifiée en changeant uniquement sa référence, aucune recompilation n'est nécessaire -->
+        <constructor-arg ref="databaseActorRepository"/>
+    </bean>
+</beans>

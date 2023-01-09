@@ -5,16 +5,20 @@ import java.util.Optional;
 
 import fr.epsi.actor.model.Actor;
 import fr.epsi.actor.repository.ActorRepository;
-import fr.epsi.actor.repository.database.DatabaseActorRepository;
-import fr.epsi.actor.repository.webservice.WebserviceRepository;
 
 public class MyActorService implements ActorService {
 
-    // Il suffit de changer ici l'implémentation de Repository pour 
-    // basculer de l'un à l'autre.
-    // Il reste donc une adhérence minime entre le Domain et le Repository !
-    private ActorRepository repo = new WebserviceRepository();
-    // private ActorRepository repo = new DatabaseActorRepository();
+    // Le Repository n'est plus créé par le Service
+    // ce dernier s'attend à ce que cette dépendance 
+    // lui soit renseignée lors de l'appel à son constructeur
+    private ActorRepository repo;
+
+    // Le constructeur permet d'injecter la dépendance vers le Repository
+    // À noter qu'il s'agit du seul constucteur, rendant cette dépendance obligatoire
+    // contrairement la méthode d'injection par setter
+    public MyActorService(ActorRepository providedRepository) {
+        this.repo = providedRepository;
+    }
 
     @Override
     public Optional<Actor> getById(Integer id) {
