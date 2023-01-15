@@ -7,6 +7,7 @@
   <groupId>fr.epsi</groupId>
   <artifactId>basic</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
 
   <name>basic</name>
   <!-- FIXME change it to the project's website -->
@@ -35,6 +36,17 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.14.1</version>
+    </dependency>
+    <!-- Dépendances nécessaires pour l'application Web -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version>
     </dependency>
 
     <dependency>
@@ -103,6 +115,12 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        <!-- Plugin pour le packaging en archive WAR -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.3.2</version>
+      </plugin>
       </plugins>
     </pluginManagement>
   </build>

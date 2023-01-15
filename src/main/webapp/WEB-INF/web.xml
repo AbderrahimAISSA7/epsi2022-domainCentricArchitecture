@@ -1,0 +1,19 @@
+<!-- Descripteur minimaliste d'une application Web -->
+<!-- La seule Servlet nécessaire est le Dispatcher de Spring, qu'on mappe sur toutes les URL-->
+<web-app>
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- ce paramètre d'initialisation indique à Spring -->
+        <!-- où trouver le fichier qui décrit le Context à charger au démarrage -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>

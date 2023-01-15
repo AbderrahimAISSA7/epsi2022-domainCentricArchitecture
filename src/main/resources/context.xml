@@ -35,4 +35,14 @@
         <!-- l'implémentation peut être modifiée en changeant uniquement sa référence, aucune recompilation n'est nécessaire -->
         <constructor-arg ref="databaseActorRepository"/>
     </bean>
+
+    <!-- Partie pour l'exposition Web -->
+
+    <!-- Bean assurant le mapping entre URL et Controleur, basé sur le nom du bean -->
+    <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!-- Notre Controller mappé sur l'URL /actors -->
+    <bean id="/actors"
+        class="fr.epsi.actor.web.ActorWebController">
+        <constructor-arg ref="actorService"/>
+    </bean>
 </beans>
