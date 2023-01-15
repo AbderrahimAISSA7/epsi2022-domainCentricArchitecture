@@ -9,9 +9,23 @@
         class="fr.epsi.actor.repository.webservice.WebserviceRepository">
     </bean>
 
+    <!-- Configuration d'une Datasource vers la base de données -->
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/sakila" />
+        <property name="username" value="postgres" />
+        <property name="password" value="postgres" />
+    </bean>
+    <!-- Configuration du JDBCTemplate pour faciliter l'accès à la base de donnes -->
+    <bean id="jdbcTemplate"
+        class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
     <!-- Configuration du bean DatabaseActorRepository -->
     <bean id="databaseActorRepository"
         class="fr.epsi.actor.repository.database.DatabaseActorRepository">
+        <constructor-arg ref="jdbcTemplate"/>
     </bean>
 
     <!-- Configuration du bean ActorService -->

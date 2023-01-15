@@ -8,7 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.epsi.actor.model.Actor;
 import fr.epsi.actor.service.ActorService;
-import fr.epsi.context.CustomContext;
 
 /**
  * Hello world!
@@ -20,13 +19,8 @@ public class App {
         // Le Service n'est plus instancié directement, mais géré par un Contexte
         ActorService service;
 
-        // 1 - Solution Custom
-        // On obtient ici l'instance du Context (patern Simgleton) avant de lui demander le Servcice
-        CustomContext customContext = CustomContext.getInstance();
-        service = customContext.getActorService();
-
-        // 2- Solution avancée avec le Framework Spring (Context générique)
         // On crée ici un Context Spring à partir du fichier descripteur context.xml 
+        // le context permet de configurer nos objets (Beans) et leurs dépendances
         ApplicationContext springContext = new ClassPathXmlApplicationContext("context.xml");
         service = springContext.getBean(ActorService.class);
 
@@ -44,6 +38,5 @@ public class App {
         } else {
             System.out.println("Il n'existe pas d'acteur d'identifiant " + id);
         }
-
     }
 }
